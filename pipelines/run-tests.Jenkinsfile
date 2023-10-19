@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    environment {
+    //environment {
         // Variables de entorno globales
         // NODE_VERSION = '18'
-    }
+    //}
 
     stages {
         stage('Checkout') {
