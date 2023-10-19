@@ -14,10 +14,10 @@ pipeline {
         }
 
         stage('Install Dependencies') {
-            environment {
+            //environment {
                 // Variables de entorno específicas de esta etapa
                 // NPM_REGISTRY = 'https://registry.npmjs.org/'
-            }
+            //}
             steps {
                 sh "npm install"
             }
