@@ -6,7 +6,7 @@ pipeline {
         // NODE_VERSION = '18'
     //}
 
-    tools { nodejs "nodejs" }
+    tools { nodejs "Node 18" }
 
     stages {
         stage('Checkout') {
