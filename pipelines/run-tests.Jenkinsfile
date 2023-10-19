@@ -1,17 +1,28 @@
 pipeline {
     agent any
 
-    //environment {
+    environment {
         // Variables de entorno globales
-        // NODE_VERSION = '18'
-    //}
+        SECRET_NUMBER = credentials('SECRET_NUMBER')
+    }
 
     tools { nodejs "Node 18" }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/LuisLiraC/react-demo-project.git']]])
+                checkout([
+                  $class: 'GitSCM',
+                  branches: [
+                    [name: 'main']
+                  ],
+                  doGenerateSubmoduleConfigurations: false,
+                  extensions: [],
+                  submoduleCfg: [],
+                  userRemoteConfigs: [
+                    [url: 'https://github.com/LuisLiraC/react-demo-project.git']
+                  ]
+                ])
             }
         }
 
@@ -28,6 +39,12 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh "npm test"
+            }
+        }
+
+        stage('Credentials') {
+            steps {
+                sh "echo $SECRET_NUMBER"
             }
         }
     }
